@@ -26,7 +26,7 @@
         body, html {
             width: 100%; height: 100%;
             font-family: 'Cormorant Garamond', Georgia, serif;
-            background-color: var(--maroon-deep); /* Fondo guinda base */
+            background-color: var(--maroon-deep);
             color: var(--text-deep);
             overflow-x: hidden;
         }
@@ -35,7 +35,6 @@
         #envelope-screen {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            /* Fondo 100% guinda para la pantalla de inicio */
             background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 1000;
@@ -44,7 +43,6 @@
         }
         #envelope-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
 
-        /* Estrellas */
         .env-star {
             position: absolute; border-radius: 50%; background: white;
             animation: envTwinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
@@ -144,7 +142,6 @@
             transition: opacity 1.5s ease-out 0.6s, transform 1.5s ease-out 0.6s;
         }
 
-        /* Capa fija para el fondo guinda detrás de la tarjeta */
         #main-invitation::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 100%);
@@ -228,7 +225,7 @@
         .bloque-vidrio { background: var(--bg-bloque); border: 1px solid var(--bg-bloque-borde); }
         .bloque-vidrio-alt { background: var(--bg-bloque-alt); border: 1px solid rgba(212,175,55,0.2); }
 
-        /* ====== NUEVO: BLOQUES GUINDA ====== */
+        /* ====== BLOQUES GUINDA ====== */
         .bloque-guinda {
             background: linear-gradient(135deg, #6b001a, #4a0011);
             border: 1px solid rgba(212,175,55,0.4);
@@ -239,11 +236,9 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             color: #fff;
         }
-        /* Ajustes de tipografía para fondos guinda */
         .bloque-guinda .section-heading { color: var(--gold-light); }
         .bloque-guinda .rsvp-intro { color: rgba(255,255,255,0.85); }
         
-        /* Calendario dentro de bloque guinda */
         .bloque-guinda .calendar-widget { background: rgba(0,0,0,0.2); border-color: rgba(212,175,55,0.3); }
         .bloque-guinda .calendar-header { color: #fff; }
         .bloque-guinda .calendar-header::after { background: rgba(212,175,55,0.3); }
@@ -253,19 +248,16 @@
         .bloque-guinda .cal-day { color: rgba(255,255,255,0.9); }
         .bloque-guinda .cal-day.highlight { background: var(--gold); color: var(--maroon-deep); }
         
-        /* Botones Acción dentro de bloque guinda */
         .bloque-guinda .btn-accion { color: var(--gold-light); border-color: var(--gold-light); }
         .bloque-guinda .btn-accion svg { fill: var(--gold-light); }
         .bloque-guinda .btn-accion:hover { background: rgba(212,175,55,0.15); }
         
-        /* Itinerario dentro de bloque guinda */
         .bloque-guinda .itinerario-timeline::before { background: linear-gradient(to bottom, transparent, var(--gold-light) 8%, var(--gold-light) 92%, transparent); }
         .bloque-guinda .itin-hora { color: var(--gold-light); }
         .bloque-guinda .itin-evento-nombre { color: #fff; }
         .bloque-guinda .itin-row.itin-main .itin-evento-nombre { color: var(--gold-light); }
         .bloque-guinda .itin-node::before { color: var(--gold); text-shadow: 0 0 10px rgba(212,175,55,0.6); }
 
-        /* Formularios y Botón Confirmar dentro de bloque guinda */
         .bloque-guinda .rsvp-input-label { color: var(--gold-light); }
         .bloque-guinda .rsvp-input { background: rgba(255,255,255,0.95); color: var(--text-deep); border-color: transparent; }
         .bloque-guinda .btn-confirmar { background: linear-gradient(135deg, var(--gold), var(--gold-muted)); color: var(--maroon-deep); text-shadow: none; font-weight: 700; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
@@ -558,7 +550,12 @@
 
             <div class="info-block">
                 <div class="info-label">Con la bendición de mis padres</div>
-                <div class="family-names">Miguel Ángel Dominguez<br>Laura Morales</div>
+                <div class="family-names">Miguel Ángel Dominguez<br>Laura Alicia Morales</div>
+            </div>
+            
+            <div class="info-block">
+                <div class="info-label">Mis queridas hermanas</div>
+                <div class="family-names">Brisia Dominguez Morales<br>Diana Dominguez Morales<br>Michell Domínguez Morales</div>
             </div>
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
@@ -638,24 +635,24 @@
                 <div class="section-heading">Itinerario</div>
                 <div class="itinerario-timeline" id="itinerario">
                     <div class="itin-row">
-                        <span class="itin-hora">6:00 P.M.</span>
+                        <span class="itin-hora">7:00 P.M.</span>
                         <div class="itin-node"></div>
                         <div class="itin-evento"><span class="itin-evento-nombre">Ceremonia</span></div>
                     </div>
                     <div class="itin-row">
-                        <span class="itin-hora">8:30 P.M.</span>
+                        <span class="itin-hora">9:00 P.M.</span>
                         <div class="itin-node"></div>
                         <div class="itin-evento"><span class="itin-evento-nombre">Recepción</span></div>
                     </div>
-                    <div class="itin-row">
-                        <span class="itin-hora">9:00 P.M.</span>
-                        <div class="itin-node"></div>
-                        <div class="itin-evento"><span class="itin-evento-nombre">Cena</span></div>
-                    </div>
                     <div class="itin-row itin-main">
-                        <span class="itin-hora">10:00 P.M.</span>
+                        <span class="itin-hora">9:30 P.M.</span>
                         <div class="itin-node"></div>
                         <div class="itin-evento"><span class="itin-evento-nombre">Vals</span></div>
+                    </div>
+                    <div class="itin-row">
+                        <span class="itin-hora">10:00 P.M.</span>
+                        <div class="itin-node"></div>
+                        <div class="itin-evento"><span class="itin-evento-nombre">Cena</span></div>
                     </div>
                     <div class="itin-row itin-main">
                         <span class="itin-hora">11:00 P.M.</span>
@@ -905,10 +902,10 @@
             const ics = [
                 'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//XV Años Meredith//ES',
                 'BEGIN:VEVENT',
-                'DTSTART:20260801T180000',
+                'DTSTART:20260801T190000',
                 'DTEND:20260802T020000',
                 'SUMMARY:XV Años de Meredith',
-                'DESCRIPTION:Ceremonia 6PM en Iglesia Perpetuo del Socorro • Recepción 8:30PM en Centro de Convenciones El Consuelo\\, Torreón Coah.',
+                'DESCRIPTION:Ceremonia 7PM en Iglesia Perpetuo del Socorro • Recepción 9:00PM en Centro de Convenciones El Consuelo\\, Torreón Coah.',
                 'LOCATION:Torreón\\, Coahuila',
                 'STATUS:CONFIRMED',
                 'END:VEVENT','END:VCALENDAR'
