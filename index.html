@@ -26,7 +26,7 @@
         body, html {
             width: 100%; height: 100%;
             font-family: 'Cormorant Garamond', Georgia, serif;
-            background-color: #080a0f; 
+            background-color: var(--maroon-deep); /* Fondo guinda base */
             color: var(--text-deep);
             overflow-x: hidden;
         }
@@ -35,8 +35,8 @@
         #envelope-screen {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            background: url('assets/imagen.jpg') no-repeat center center;
-            background-size: cover;
+            /* Fondo 100% guinda para la pantalla de inicio */
+            background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 1000;
             transition: opacity 1.2s ease-in-out, visibility 1.2s;
@@ -144,10 +144,11 @@
             transition: opacity 1.5s ease-out 0.6s, transform 1.5s ease-out 0.6s;
         }
 
+        /* Capa fija para el fondo guinda detrás de la tarjeta */
         #main-invitation::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: url('assets/imagen.jpg') no-repeat center center;
-            background-size: cover; z-index: -1; will-change: transform; image-rendering: high-quality;
+            background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 100%);
+            z-index: -1; will-change: transform;
         }
 
         body.content-active #main-invitation { opacity: 1; transform: translateY(0); }
@@ -156,7 +157,7 @@
             max-width: 500px; width: 100%; border: 1px solid rgba(212,175,55,0.4);
             padding: 50px 38px; text-align: center; position: relative;
             background: rgba(255,253,250,0.85);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.6) inset;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.6) inset;
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border-radius: 4px; overflow: visible;
         }
@@ -170,13 +171,6 @@
         .hero-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 114px 114px 0 0; }
 
         .hashtag-text { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 26px; color: var(--maroon); margin: 10px 0 25px 0; letter-spacing: 1px; font-weight: 500; }
-
-        .qr-box {
-            width: 150px; height: 150px; margin: 18px auto; border-radius: 12px;
-            background: #fff; padding: 12px; border: 1px solid rgba(212,175,55,0.3);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-        }
-        .qr-img { width: 100%; height: 100%; object-fit: contain; }
 
         .frame-sparkle { position: absolute; pointer-events: none; z-index: 10; }
         .frame-sparkle svg { animation: sparkle-pulse 2.5s ease-in-out infinite; fill: var(--gold); }
@@ -226,6 +220,7 @@
         .countdown-number { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 600; color: var(--maroon); display: block; }
         .countdown-label { font-family: 'Montserrat', sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); font-weight: 500; }
 
+        /* ====== BLOQUES ESTÁNDAR ====== */
         .bloque-vidrio, .bloque-vidrio-alt {
             border-radius: 8px; padding: 28px 26px; margin: 0 -38px; position: relative;
             backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
@@ -233,7 +228,50 @@
         .bloque-vidrio { background: var(--bg-bloque); border: 1px solid var(--bg-bloque-borde); }
         .bloque-vidrio-alt { background: var(--bg-bloque-alt); border: 1px solid rgba(212,175,55,0.2); }
 
-        /* ====== CALENDARIO ====== */
+        /* ====== NUEVO: BLOQUES GUINDA ====== */
+        .bloque-guinda {
+            background: linear-gradient(135deg, #6b001a, #4a0011);
+            border: 1px solid rgba(212,175,55,0.4);
+            border-radius: 8px; 
+            padding: 28px 26px; 
+            margin: 0 -38px; 
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: #fff;
+        }
+        /* Ajustes de tipografía para fondos guinda */
+        .bloque-guinda .section-heading { color: var(--gold-light); }
+        .bloque-guinda .rsvp-intro { color: rgba(255,255,255,0.85); }
+        
+        /* Calendario dentro de bloque guinda */
+        .bloque-guinda .calendar-widget { background: rgba(0,0,0,0.2); border-color: rgba(212,175,55,0.3); }
+        .bloque-guinda .calendar-header { color: #fff; }
+        .bloque-guinda .calendar-header::after { background: rgba(212,175,55,0.3); }
+        .bloque-guinda .calendar-year { color: var(--gold-light); }
+        .bloque-guinda .calendar-month { color: #fff; }
+        .bloque-guinda .calendar-day-name { color: var(--gold-light); }
+        .bloque-guinda .cal-day { color: rgba(255,255,255,0.9); }
+        .bloque-guinda .cal-day.highlight { background: var(--gold); color: var(--maroon-deep); }
+        
+        /* Botones Acción dentro de bloque guinda */
+        .bloque-guinda .btn-accion { color: var(--gold-light); border-color: var(--gold-light); }
+        .bloque-guinda .btn-accion svg { fill: var(--gold-light); }
+        .bloque-guinda .btn-accion:hover { background: rgba(212,175,55,0.15); }
+        
+        /* Itinerario dentro de bloque guinda */
+        .bloque-guinda .itinerario-timeline::before { background: linear-gradient(to bottom, transparent, var(--gold-light) 8%, var(--gold-light) 92%, transparent); }
+        .bloque-guinda .itin-hora { color: var(--gold-light); }
+        .bloque-guinda .itin-evento-nombre { color: #fff; }
+        .bloque-guinda .itin-row.itin-main .itin-evento-nombre { color: var(--gold-light); }
+        .bloque-guinda .itin-node::before { color: var(--gold); text-shadow: 0 0 10px rgba(212,175,55,0.6); }
+
+        /* Formularios y Botón Confirmar dentro de bloque guinda */
+        .bloque-guinda .rsvp-input-label { color: var(--gold-light); }
+        .bloque-guinda .rsvp-input { background: rgba(255,255,255,0.95); color: var(--text-deep); border-color: transparent; }
+        .bloque-guinda .btn-confirmar { background: linear-gradient(135deg, var(--gold), var(--gold-muted)); color: var(--maroon-deep); text-shadow: none; font-weight: 700; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .bloque-guinda .btn-confirmar svg { fill: var(--maroon-deep); }
+
+        /* ====== CALENDARIO ESTÁNDAR ====== */
         .calendar-widget {
             margin-top: 18px; background: rgba(255,255,255,0.4); border: 1px solid rgba(212,175,55,0.3);
             border-radius: 18px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
@@ -271,10 +309,6 @@
         .location-nombre { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-style: italic; font-weight: 600; color: var(--maroon); line-height: 1.2; margin-bottom: 8px; }
         .location-direccion { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 400; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px; padding: 0 10px; }
         .map-wrapper { width: 100%; height: 220px; border-radius: 8px; overflow: hidden; border: 1px solid var(--gold); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-
-        /* ====== GALERÍA ====== */
-        .galeria-contenedor { width: 100%; margin-top: 18px; border-radius: 6px; overflow: hidden; border: 1px solid var(--gold); box-shadow: 0 12px 30px rgba(128,0,32,0.15); }
-        .galeria-img { width: 100%; display: block; height: auto; transition: transform 0.5s ease; }
 
         /* ====== ITINERARIO ====== */
         .itinerario-timeline { margin-top: 20px; position: relative; padding: 0; }
@@ -338,13 +372,13 @@
 
         .lotus-header { margin-bottom: 20px; }
         .lotus-header svg { width: 48px; height: 48px; fill: var(--gold); }
-        .invitation-footer { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: rgba(92,60,67,0.6); margin-top: 24px; font-weight: 600; text-transform: uppercase; }
+        .invitation-footer { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-top: 24px; font-weight: 600; text-transform: uppercase; }
 
         @keyframes pulse { 0%,100%{opacity:0.5}50%{opacity:1} }
         @media(max-width:400px){
             .main-title{font-size:64px}
             .invitation-frame{padding:38px 22px}
-            .bloque-vidrio, .bloque-vidrio-alt{margin:0 -22px}
+            .bloque-vidrio, .bloque-vidrio-alt, .bloque-guinda{margin:0 -22px}
         }
     </style>
 </head>
@@ -539,10 +573,11 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <div class="bloque-vidrio">
+            <!-- BLOQUE FECHA EN GUINDA -->
+            <div class="bloque-guinda">
                 <div class="section-heading">Fecha</div>
-                <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:600;color:var(--text-deep);letter-spacing:3px;">01 · AGO · 2026</div>
-                <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--maroon-deep);margin-top:5px;font-weight:600;">Sábado</div>
+                <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:600;color:#ffffff;letter-spacing:3px;">01 · AGO · 2026</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold-light);margin-top:5px;font-weight:600;">Sábado</div>
                 
                 <div class="calendar-widget">
                     <div class="calendar-header">2026 <div class="calendar-month">Agosto</div></div>
@@ -570,6 +605,7 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
+            <!-- UBICACIONES LIMPIAS (SIN CAJAS) -->
             <div class="bloque-vidrio-alt">
                 <div class="section-heading">Ubicaciones</div>
                 <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--text-muted);margin-bottom:20px;">Torreón, Coahuila</div>
@@ -597,7 +633,8 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <div class="bloque-vidrio">
+            <!-- BLOQUE ITINERARIO EN GUINDA -->
+            <div class="bloque-guinda">
                 <div class="section-heading">Itinerario</div>
                 <div class="itinerario-timeline" id="itinerario">
                     <div class="itin-row">
@@ -648,6 +685,7 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
+            <!-- MESA DE REGALOS: LLUVIA DE SOBRES -->
             <div class="bloque-vidrio">
                 <div class="section-heading">Mesa de Regalos</div>
                 <p class="rsvp-intro" style="margin-bottom: 15px;">El mejor regalo es tu presencia. Pero si deseas tener un detalle conmigo, habrá un buzón en la recepción para lluvia de sobres.</p>
@@ -660,12 +698,14 @@
                 <div class="section-tag">Lluvia de Sobres</div>
             </div>
 
-            <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
+            <!-- BLOQUE MENSAJE EN GUINDA -->
+            <div class="bloque-guinda" style="margin-top: 35px; text-align: center; padding: 35px 26px;">
+                <p class="phrase" style="font-size:18px; margin:0; color:#ffffff;">"Mis quince años marcan el inicio de una etapa muy especial. Hoy, con el corazón lleno de alegría, quiero compartir este momento con ustedes, porque su compañía hará que este día permanezca por siempre en mi corazón."</p>
+            </div>
 
-            <p class="phrase" style="font-size:17px;margin:0 0 6px 0;">"Mis quince años marcan el inicio de una etapa muy especial. Hoy, con el corazón lleno de alegría, quiero compartir este momento con ustedes, porque su compañía hará que este día permanezca por siempre en mi corazón."</p>
+            <div class="divider-ornate" style="margin-top: 35px;"><div class="divider-ornate-diamond"></div></div>
 
-            <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
-
+            <!-- CONFIRMACIÓN -->
             <div class="bloque-vidrio-alt">
                 <div class="section-heading">Confirmación</div>
                 <p class="rsvp-intro">Será un honor contar con tu presencia en esta noche tan especial. Por favor confirma tu asistencia.</p>
@@ -681,7 +721,8 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <div class="bloque-vidrio">
+            <!-- BUENOS DESEOS EN GUINDA -->
+            <div class="bloque-guinda">
                 <div class="section-heading">Buenos Deseos</div>
                 <p class="rsvp-intro">Deja un mensaje para Meredith. Tu mensaje se guardará con cariño en esta nueva etapa.</p>
                 <form id="wish-form" style="text-align: left;">
@@ -728,7 +769,6 @@
                 decay: Math.random()*(burst?0.016:0.007)+0.005,
                 rotation: Math.random()*Math.PI*2,
                 rotSpeed: (Math.random()-0.5)*0.18,
-                // Colores dorados y champaña para encajar con el guinda
                 color: Math.random()>0.6?'212,175,55':Math.random()>0.5?'240,208,96':'255,255,255'
             };
         }
@@ -839,7 +879,6 @@
         }
 
         /* ===== FUNCIONES WHATSAPP ===== */
-        // Número proporcionado
         const WA_NUMBER = "528714650603";
 
         function sendConfirmationViaWhatsApp(){
