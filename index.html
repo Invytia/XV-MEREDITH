@@ -325,6 +325,86 @@
         .vestimenta-icon-item svg { width: 28px; height: 28px; fill: var(--maroon); opacity: 0.85; }
         .vestimenta-icon-label { font-family: 'Cinzel', serif; font-size: 7.5px; letter-spacing: 2px; color: var(--maroon-deep); text-transform: uppercase; font-weight: 600; }
 
+        /* ====== GALERÍA ====== */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .galeria-item {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Ratio 1:1 Cuadrado */
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid rgba(212,175,55,0.4);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .galeria-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(128,0,32,0.2);
+        }
+        .galeria-item img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* ====== LIGHTBOX ====== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 60px;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(26, 0, 5, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            object-fit: contain;
+        }
+        .lightbox.show .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: var(--gold-light);
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-family: sans-serif;
+            z-index: 2001;
+        }
+        .lightbox-close:hover {
+            color: #fff;
+        }
+
         /* ====== CONFIRMACIÓN Y BOTONES MAIN ====== */
         .rsvp-intro { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--text-muted); line-height: 1.8; margin-bottom: 22px; }
         .rsvp-input-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: var(--maroon); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 8px; }
@@ -570,7 +650,6 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <!-- BLOQUE FECHA EN GUINDA -->
             <div class="bloque-guinda">
                 <div class="section-heading">Fecha</div>
                 <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:600;color:#ffffff;letter-spacing:3px;">01 · AGO · 2026</div>
@@ -602,7 +681,6 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <!-- UBICACIONES LIMPIAS (SIN CAJAS) -->
             <div class="bloque-vidrio-alt">
                 <div class="section-heading">Ubicaciones</div>
                 <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--text-muted);margin-bottom:20px;">Torreón, Coahuila</div>
@@ -630,7 +708,6 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <!-- BLOQUE ITINERARIO EN GUINDA -->
             <div class="bloque-guinda">
                 <div class="section-heading">Itinerario</div>
                 <div class="itinerario-timeline" id="itinerario">
@@ -682,8 +759,27 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <!-- MESA DE REGALOS: LLUVIA DE SOBRES -->
             <div class="bloque-vidrio">
+                <div class="section-heading">Galería</div>
+                <div class="galeria-grid">
+                    <div class="galeria-item" onclick="openLightbox('assets/galeria1.jpg')">
+                        <img src="assets/galeria1.jpg" alt="Galería 1">
+                    </div>
+                    <div class="galeria-item" onclick="openLightbox('assets/galeria2.jpg')">
+                        <img src="assets/galeria2.jpg" alt="Galería 2">
+                    </div>
+                    <div class="galeria-item" onclick="openLightbox('assets/galeria3.jpg')">
+                        <img src="assets/galeria3.jpg" alt="Galería 3">
+                    </div>
+                    <div class="galeria-item" onclick="openLightbox('assets/galeria4.jpg')">
+                        <img src="assets/galeria4.jpg" alt="Galería 4">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
+
+            <div class="bloque-vidrio-alt">
                 <div class="section-heading">Mesa de Regalos</div>
                 <p class="rsvp-intro" style="margin-bottom: 15px;">El mejor regalo es tu presencia. Pero si deseas tener un detalle conmigo, habrá un buzón en la recepción para lluvia de sobres.</p>
                 
@@ -695,14 +791,12 @@
                 <div class="section-tag">Lluvia de Sobres</div>
             </div>
 
-            <!-- BLOQUE MENSAJE EN GUINDA -->
             <div class="bloque-guinda" style="margin-top: 35px; text-align: center; padding: 35px 26px;">
                 <p class="phrase" style="font-size:18px; margin:0; color:#ffffff;">"Mis quince años marcan el inicio de una etapa muy especial. Hoy, con el corazón lleno de alegría, quiero compartir este momento con ustedes, porque su compañía hará que este día permanezca por siempre en mi corazón."</p>
             </div>
 
             <div class="divider-ornate" style="margin-top: 35px;"><div class="divider-ornate-diamond"></div></div>
 
-            <!-- CONFIRMACIÓN -->
             <div class="bloque-vidrio-alt">
                 <div class="section-heading">Confirmación</div>
                 <p class="rsvp-intro">Será un honor contar con tu presencia en esta noche tan especial. Por favor confirma tu asistencia.</p>
@@ -718,7 +812,6 @@
 
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
-            <!-- BUENOS DESEOS EN GUINDA -->
             <div class="bloque-guinda">
                 <div class="section-heading">Buenos Deseos</div>
                 <p class="rsvp-intro">Deja un mensaje para Meredith. Tu mensaje se guardará con cariño en esta nueva etapa.</p>
@@ -743,6 +836,11 @@
 
         </div>
     </main>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
 
     <script>
         let isPlaying = false;
@@ -873,6 +971,26 @@
             const icon = document.getElementById('music-icon');
             if(!icon)return;
             icon.innerHTML = isPlaying ? '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+        }
+
+        /* ===== LIGHTBOX GALERÍA ====== */
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.style.display = 'flex';
+            setTimeout(() => {
+                lightbox.classList.add('show');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.getElementById('lightbox-img').src = '';
+            }, 400); 
         }
 
         /* ===== FUNCIONES WHATSAPP ===== */
