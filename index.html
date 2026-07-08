@@ -260,8 +260,25 @@
 
         .bloque-guinda .rsvp-input-label { color: var(--gold-light); }
         .bloque-guinda .rsvp-input { background: rgba(255,255,255,0.95); color: var(--text-deep); border-color: transparent; }
+        
+        /* ====== BOTÓN CONFIRMAR Y ENLACES ====== */
+        .btn-confirmar {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px; width: 100%;
+            padding: 15px 24px; background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
+            color: #fff; border: none; font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 3px;
+            text-transform: uppercase; cursor: pointer; font-weight: 600; border-radius: 4px;
+            box-shadow: 0 5px 18px rgba(128,0,32,0.3); transition: all 0.4s ease;
+            position: relative; overflow: hidden; backdrop-filter: blur(4px);
+            text-decoration: none; /* Añadido para que funcione igual en etiquetas <a> */
+        }
+        .btn-confirmar::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); transition: left 0.5s; }
+        .btn-confirmar:hover::before { left: 100%; }
+        .btn-confirmar:hover { box-shadow: 0 7px 25px rgba(128,0,32,0.45); transform: translateY(-1px); color: #fff; }
+        .btn-confirmar svg { width: 17px; height: 17px; fill: #fff; flex-shrink: 0; }
+        
         .bloque-guinda .btn-confirmar { background: linear-gradient(135deg, var(--gold), var(--gold-muted)); color: var(--maroon-deep); text-shadow: none; font-weight: 700; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .bloque-guinda .btn-confirmar svg { fill: var(--maroon-deep); }
+        .bloque-guinda .btn-confirmar:hover { color: var(--maroon-deep); }
 
         /* ====== CALENDARIO ESTÁNDAR ====== */
         .calendar-widget {
@@ -357,6 +374,25 @@
             transform: scale(1.1);
         }
 
+        /* ====== GALERÍA EN VIVO (CÓDIGO QR) ====== */
+        .qr-wrapper {
+            margin: 22px auto;
+            max-width: 200px;
+            padding: 12px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 12px;
+            border: 1px solid rgba(212,175,55,0.4);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .qr-wrapper:hover { transform: translateY(-4px); }
+        .qr-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
         /* ====== LIGHTBOX ====== */
         .lightbox {
             display: none;
@@ -405,26 +441,13 @@
             color: #fff;
         }
 
-        /* ====== CONFIRMACIÓN Y BOTONES MAIN ====== */
+        /* ====== CONFIRMACIÓN Y BOTONES ====== */
         .rsvp-intro { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--text-muted); line-height: 1.8; margin-bottom: 22px; }
         .rsvp-input-label { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: var(--maroon); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 8px; }
         .rsvp-input { width: 100%; padding: 13px 16px; font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--text-deep); background: rgba(255,255,255,0.7); border: 1px solid rgba(212,175,55,0.4); border-radius: 4px; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
         .rsvp-input:focus { border-color: var(--maroon); box-shadow: 0 0 0 3px rgba(128,0,32,0.1); }
         .rsvp-input::placeholder { font-style: italic; color: rgba(92,60,67,0.45); }
         .rsvp-input-wrap { margin-bottom: 18px; }
-        
-        .btn-confirmar {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px; width: 100%;
-            padding: 15px 24px; background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
-            color: #fff; border: none; font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 3px;
-            text-transform: uppercase; cursor: pointer; font-weight: 600; border-radius: 4px;
-            box-shadow: 0 5px 18px rgba(128,0,32,0.3); transition: all 0.4s ease;
-            position: relative; overflow: hidden; backdrop-filter: blur(4px);
-        }
-        .btn-confirmar::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); transition: left 0.5s; }
-        .btn-confirmar:hover::before { left: 100%; }
-        .btn-confirmar:hover { box-shadow: 0 7px 25px rgba(128,0,32,0.45); transform: translateY(-1px); }
-        .btn-confirmar svg { width: 17px; height: 17px; fill: #fff; flex-shrink: 0; }
 
         /* ====== CANVAS BRILLOS ====== */
         #glitter-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0; transition: opacity 0.8s; }
@@ -776,10 +799,24 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
 
             <div class="bloque-vidrio-alt">
+                <div class="section-heading">Galería en Vivo</div>
+                <p class="rsvp-intro" style="margin-bottom: 15px;">Ayúdanos a capturar los mejores momentos de la noche. Escanea el código QR o haz clic en el botón para subir tus fotos y videos a nuestro álbum compartido.</p>
+                <div class="qr-wrapper">
+                    <img src="assets/qr-fotos.png" alt="Código QR para subir fotos" class="qr-image">
+                </div>
+                <a href="https://drive.google.com/drive/folders/1azo8rKNdYisPhmQz7iHbsnIPqnn9mk7K?usp=sharing" target="_blank" class="btn-confirmar" style="margin-top: 10px;">
+                    <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                    Subir Fotos Aquí
+                </a>
+            </div>
+            
+            <div class="divider-ornate"><div class="divider-ornate-diamond"></div></div>
+
+            <div class="bloque-vidrio">
                 <div class="section-heading">Mesa de Regalos</div>
                 <p class="rsvp-intro" style="margin-bottom: 15px;">El mejor regalo es tu presencia. Pero si deseas tener un detalle conmigo, habrá un buzón en la recepción para lluvia de sobres.</p>
                 
@@ -838,7 +875,7 @@
     </main>
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-close">×</span>
         <img id="lightbox-img" class="lightbox-content" src="">
     </div>
 
